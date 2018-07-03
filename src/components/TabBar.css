@@ -1,0 +1,29 @@
+.TabBar { 
+    width: 100%;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background: #F33664;
+    list-style: none;
+}
+
+.TabBar .tab {
+    flex-grow: 1;
+    text-align: center;
+    height: 44px;
+    padding: 0 1rem;
+    margin: 0 0.5rem;
+    line-height: 44px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+.TabBar .tab:hover {
+    background-color: #ffffff24;
+}
+
+.TabBar .tab.selected {
+    border-bottom-color: #ffffffaa;
+}
