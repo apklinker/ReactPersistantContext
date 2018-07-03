@@ -1,6 +1,11 @@
+import LocalStorage from './LocalStorage';
+
 export default class GlobalContext {
+
+    storage = new LocalStorage();
     
-    setup(contexts, setGlobalStateCallback) {
+    setup(contexts, setGlobalStateCallback, storage) {
+        if (storage !== undefined) this.storage = storage;
         for (var i = 0; i < contexts.length; i++) {
             this.set(contexts[i].title, contexts[i]);
         }
@@ -32,12 +37,11 @@ export default class GlobalContext {
     save(appState) {
         for (var key in this) {
             if (this.hasOwnProperty(key) && key !== 'setGlobalState') {
-                console.log(key, typeof key);
                 let context = this.getContext(key);
                 let contextValues = appState[key]; // use new state values, not ones currently stored in the local storeage
                 let storageKey = context.storageKey;
                 console.log('saving: ', storageKey, contextValues);
-                localStorage.setItem(storageKey, JSON.stringify(contextValues));
+                this.storage.setItem(storageKey, contextValues);
             }
         }
     }
